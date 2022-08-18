@@ -21,10 +21,6 @@ Command::Command(std::shared_ptr<Robot> &robot)
 
 }
 
-bool Command::isCommandValid() const {
-    return CommandType::Invalid != getCommandType();
-}
-
 CommandType Command::matchCommandType(const std::string &commandText) {
     CommandType commandType = CommandType::Invalid;
 

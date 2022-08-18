@@ -13,8 +13,7 @@ TEST_F(test_CommandFactory, invalidString) {
             "abcd",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(commandPlace));
 }
 
 TEST_F(test_CommandFactory, invalidDoublePosition) {
@@ -22,8 +21,7 @@ TEST_F(test_CommandFactory, invalidDoublePosition) {
             "place 1.1,2,north",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(commandPlace));
 }
 
 TEST_F(test_CommandFactory, invalidNegativePosition) {
@@ -31,8 +29,7 @@ TEST_F(test_CommandFactory, invalidNegativePosition) {
             "place 2,-3,north",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(commandPlace));
 }
 
 TEST_F(test_CommandFactory, validPositionWithWhitespaceInBothEnds) {
@@ -40,8 +37,8 @@ TEST_F(test_CommandFactory, validPositionWithWhitespaceInBothEnds) {
             "    place 4,0,north    ",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Place);
-    EXPECT_TRUE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandPlace(commandPlace));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(commandPlace));
     EXPECT_TRUE(commandPlace->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(4, 0, NORTH));
 }
@@ -51,8 +48,7 @@ TEST_F(test_CommandFactory, invalidPositionWithWhitespaceInTheMiddle) {
             "place 1, 3 ,north",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(commandPlace));
 }
 
 TEST_F(test_CommandFactory, validPositionMixedUpperLowerCase) {
@@ -60,8 +56,8 @@ TEST_F(test_CommandFactory, validPositionMixedUpperLowerCase) {
             "pLAce 1,3,sOuTH",
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Place);
-    EXPECT_TRUE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandPlace(commandPlace));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(commandPlace));
     EXPECT_TRUE(commandPlace->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(1, 3, SOUTH));
 }

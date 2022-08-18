@@ -13,8 +13,8 @@ TEST_F(test_CommandPlace, placeToValidPosition) {
             PLACE + " " + test_ToyRobot::toString(1, 1, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(command->getCommandType() == CommandType::Place);
-    EXPECT_TRUE(command->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandPlace(command));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(command));
     EXPECT_TRUE(command->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(1, 1, WEST));
 }
@@ -24,8 +24,7 @@ TEST_F(test_CommandPlace, placeToInvalidPosition_X) {
             PLACE + " " + test_ToyRobot::toString(-1, 1, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(command->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(command->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(command));
     EXPECT_FALSE(command->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(-1, -1, UNDEFINED));
 }
@@ -35,8 +34,7 @@ TEST_F(test_CommandPlace, placeToInvalidPosition_Y) {
             PLACE + " " + test_ToyRobot::toString(1, -1, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(command->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(command->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(command));
     EXPECT_FALSE(command->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(-1, -1, UNDEFINED));
 }
@@ -46,8 +44,7 @@ TEST_F(test_CommandPlace, placeToInvalidPosition_Direction) {
             PLACE + " " + test_ToyRobot::toString(1, 1, UNDEFINED),
             DELIMITER
     );
-    EXPECT_TRUE(command->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(command->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(command));
     EXPECT_FALSE(command->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(-1, -1, UNDEFINED));
 }
@@ -57,8 +54,8 @@ TEST_F(test_CommandPlace, placeToInvalidPositionFromValidPosition) {
             PLACE + " " + test_ToyRobot::toString(3, 2, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(commandPlaceToValidPos->getCommandType() == CommandType::Place);
-    EXPECT_TRUE(commandPlaceToValidPos->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandPlace(commandPlaceToValidPos));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(commandPlaceToValidPos));
     EXPECT_TRUE(commandPlaceToValidPos->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(3, 2, WEST));
 
@@ -66,8 +63,7 @@ TEST_F(test_CommandPlace, placeToInvalidPositionFromValidPosition) {
             PLACE + " " + test_ToyRobot::toString(1, -1, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(commandPlaceToInvalidPos->getCommandType() == CommandType::Invalid);
-    EXPECT_FALSE(commandPlaceToInvalidPos->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandInvalid(commandPlaceToInvalidPos));
     EXPECT_FALSE(commandPlaceToInvalidPos->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(3, 2, WEST));
 }

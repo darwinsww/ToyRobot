@@ -14,8 +14,4 @@ bool CommandReport::executeCommand() {
     _robot->reportPosition();
     return true;
 }
-
-CommandType CommandReport::getCommandType() const {
-    return CommandType::Report;
-}
 }

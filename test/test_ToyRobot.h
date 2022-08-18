@@ -27,6 +27,36 @@ protected:
         _cmdFactory.reset();
     }
 
+    static bool isCommandInvalid(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandInvalid) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandInvalid>(cmd);
+    }
+
+    static bool isCommandPlace(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandPlace) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandPlace>(cmd);
+    }
+
+    static bool isCommandMove(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandMove) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandMove>(cmd);
+    }
+
+    static bool isCommandLeft(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandLeft) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandLeft>(cmd);
+    }
+
+    static bool isCommandRight(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandRight) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandRight>(cmd);
+    }
+
+    static bool isCommandReport(const std::shared_ptr<Command>& cmd) {
+        return typeid(CommandReport) == typeid(*cmd);
+        // return nullptr != std::dynamic_pointer_cast<CommandReport>(cmd);
+    }
+
     static std::string toString(int x, int y, const std::string &direction) {
         return std::to_string(x) + "," + std::to_string(y) + "," + direction;
     }

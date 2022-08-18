@@ -14,10 +14,6 @@ bool CommandPlace::executeCommand() {
     return _robot->placeIfValid(_position);
 }
 
-CommandType CommandPlace::getCommandType() const {
-    return CommandType::Place;
-}
-
 void CommandPlace::setPosition(const Position &newPosition) {
     _position = newPosition;
 }

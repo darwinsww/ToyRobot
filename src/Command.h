@@ -22,8 +22,6 @@ public:
     explicit Command(std::shared_ptr<Robot> &robot);
 
     virtual bool executeCommand() = 0;
-    virtual CommandType getCommandType() const = 0;
-    bool isCommandValid() const;
 
     static CommandType matchCommandType(const std::string &commandText);
 

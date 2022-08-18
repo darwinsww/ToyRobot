@@ -10,8 +10,4 @@ CommandInvalid::CommandInvalid(std::shared_ptr<Robot> &robot)
 bool CommandInvalid::executeCommand() {
     return false;
 }
-
-CommandType CommandInvalid::getCommandType() const {
-    return CommandType::Invalid;
-}
 }

@@ -10,7 +10,6 @@ public:
     explicit CommandReport(std::shared_ptr<Robot> &robot);
 
     bool executeCommand() override;
-    CommandType getCommandType() const override;
 };
 }
 

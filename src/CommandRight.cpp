@@ -13,8 +13,4 @@ bool CommandRight::executeCommand() {
     assert(nullptr != _robot);
     return _robot->rotateRightIfValid();
 }
-
-CommandType CommandRight::getCommandType() const {
-    return CommandType::Right;
-}
 }

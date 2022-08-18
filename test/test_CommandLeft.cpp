@@ -13,8 +13,8 @@ TEST_F(test_CommandLeft, rotateLeft) {
             PLACE + " " + test_ToyRobot::toString(3, 2, WEST),
             DELIMITER
     );
-    EXPECT_TRUE(commandPlace->getCommandType() == CommandType::Place);
-    EXPECT_TRUE(commandPlace->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandPlace(commandPlace));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(commandPlace));
     EXPECT_TRUE(commandPlace->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(3, 2, WEST));
 
@@ -22,8 +22,8 @@ TEST_F(test_CommandLeft, rotateLeft) {
             LEFT,
             DELIMITER
     );
-    EXPECT_TRUE(commandLeft->getCommandType() == CommandType::Left);
-    EXPECT_TRUE(commandLeft->isCommandValid());
+    EXPECT_TRUE(test_ToyRobot::isCommandLeft(commandLeft));
+    EXPECT_FALSE(test_ToyRobot::isCommandInvalid(commandLeft));
     EXPECT_TRUE(commandLeft->executeCommand());
     EXPECT_TRUE(_robot->positionToString() == test_ToyRobot::toString(3, 2, SOUTH));
 }
